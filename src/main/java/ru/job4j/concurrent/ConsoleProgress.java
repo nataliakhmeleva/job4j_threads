@@ -4,8 +4,8 @@ public class ConsoleProgress implements Runnable {
     @Override
     public void run() {
         int count = 0;
+        String[] process = {"-", "\\", "|", "/"};
         while (!Thread.currentThread().isInterrupted()) {
-            String[] process = {"-", "\\", "|", "/"};
             if (count == process.length) {
                 count = 0;
             }
