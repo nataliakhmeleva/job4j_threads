@@ -18,15 +18,18 @@ public class ParseFile {
         return content(data -> data < 0x80);
     }
 
-    private String content(Predicate<Character> filter) throws IOException {
-        BufferedInputStream input = new BufferedInputStream(new FileInputStream(file));
-        String output = "";
-        int data;
-        while ((data = input.read()) > 0) {
-            if (filter.test((char) data)) {
-                output += (char) data;
+    private String content(Predicate<Character> filter) {
+        StringBuilder output = new StringBuilder();
+        try (BufferedInputStream input = new BufferedInputStream(new FileInputStream(file))) {
+            int data;
+            while ((data = input.read()) != -1) {
+                if (filter.test((char) data)) {
+                    output.append((char) data);
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return output;
+        return output.toString();
     }
 }
