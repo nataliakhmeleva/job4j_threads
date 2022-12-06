@@ -9,13 +9,21 @@ class SimpleBlockingQueueTest {
     public void whenOfferAndPoll() throws InterruptedException {
         SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(3);
         Thread producer = new Thread(() -> {
-            queue.offer(1);
-            queue.offer(2);
-            queue.offer(3);
+            try {
+                queue.offer(1);
+                queue.offer(2);
+                queue.offer(3);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
         Thread consumer = new Thread(() -> {
-            queue.poll();
-            queue.poll();
+            try {
+                queue.poll();
+                queue.poll();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
         producer.start();
         consumer.start();
