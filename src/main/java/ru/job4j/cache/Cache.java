@@ -15,7 +15,9 @@ public class Cache {
                     if (v.getVersion() != model.getVersion()) {
                         throw new OptimisticException("Versions are not equal");
                     }
-                    return new Base(k, v.getVersion() + 1);
+                    Base newBaseWithOldName = new Base(k, v.getVersion() + 1);
+                    newBaseWithOldName.setName(model.getName());
+                    return newBaseWithOldName;
                 }
         );
         return stored != null;
