@@ -24,19 +24,13 @@ public class ThreadPool {
                         }
                     }
             );
+            consumer.start();
             threads.add(consumer);
-        }
-        for (Thread thread : threads) {
-            thread.start();
         }
     }
 
-    public void work(Runnable job) {
-        try {
-            tasks.offer(job);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+    public void work(Runnable job) throws InterruptedException {
+        tasks.offer(job);
     }
 
     public void shutdown() {
@@ -45,7 +39,7 @@ public class ThreadPool {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ThreadPool threadPool = new ThreadPool();
         for (int i = 0; i < threadPool.size; i++) {
             int taskNo = i;
