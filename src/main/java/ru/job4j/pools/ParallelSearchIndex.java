@@ -31,7 +31,7 @@ public class ParallelSearchIndex<T> extends RecursiveTask<Integer> {
         rightSort.fork();
         int left = leftSort.join();
         int right = rightSort.join();
-        return sortIndex(left, right);
+        return Math.max(left, right);
     }
 
     public static <T> int sort(T[] array, T value) {
@@ -48,15 +48,5 @@ public class ParallelSearchIndex<T> extends RecursiveTask<Integer> {
             }
         }
         return rsl;
-    }
-
-    private int sortIndex(int left, int right) {
-        if (left != -1) {
-            return left;
-        }
-        if (right != -1) {
-            return right;
-        }
-        return -1;
     }
 }
