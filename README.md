@@ -14,3 +14,5 @@ Non Blocking Algorithm: CAS - операции.
 Пулы: ThreadSafe Singleton, ForkJoinPool, CompletableFuture.
 
 Объединение зафиксированных изменений. Попытка №2.
+
+Внесение изменений до сохранения через git stash.
