@@ -12,3 +12,5 @@ Wait, Notify, NotifyAll: управление нитью через wait.
 Non Blocking Algorithm: CAS - операции.
 
 Пулы: ThreadSafe Singleton, ForkJoinPool, CompletableFuture.
+
+Объединение зафиксированных изменений. Попытка №2.
